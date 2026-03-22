@@ -46,3 +46,4 @@ app-example
 !.vscode/settings.json
 !.vscode/extensions.json
 .claude/
+!.claude/CLAUDE.md
