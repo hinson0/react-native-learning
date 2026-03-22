@@ -37,28 +37,28 @@ export type ParseSource = "rule_engine" | "glm";
 // 所有字段用 readonly 修饰，deleted_at 和可选字段用 `string | null`
 // export interface Account { ... }
 export interface Account {
-    readonly id: string;
-    readonly name: string;
-    readonly type: AccountType;
-    readonly currency: Currency;
-    readonly initial_balance: number;
-    readonly icon: string;
-    readonly sort_order: number;
-    readonly deleted_at: string | null;
-    readonly created_at: string;
-    readonly updated_at: string;
+  readonly id: string;
+  readonly name: string;
+  readonly type: AccountType;
+  readonly currency: Currency;
+  readonly initial_balance: number;
+  readonly icon: string;
+  readonly sort_order: number;
+  readonly deleted_at: string | null;
+  readonly created_at: string;
+  readonly updated_at: string;
 }
 
 // TODO(human): 定义 Category 接口（对应数据库 categories 表）
 // 提示: 预设固定分类，is_system 用 number（SQLite 没有 boolean）
 // export interface Category { ... }
 export interface Category {
-    readonly id: string;
-    readonly name: string;
-    readonly icon: string;
-    readonly type: TransactionType;
-    readonly is_system: number;
-    readonly sort_order: number;
+  readonly id: string;
+  readonly name: string;
+  readonly icon: string;
+  readonly type: TransactionType;
+  readonly is_system: number;
+  readonly sort_order: number;
 }
 
 // TODO(human): 定义 Transaction 接口（对应数据库 transactions 表）
@@ -67,20 +67,20 @@ export interface Category {
 // export interface Transaction { ... }
 
 export interface Transaction {
-    readonly id: string;
-    readonly amount: number;
-    readonly currency: Currency;
-    readonly type: TransactionType;
-    readonly category_id: string;
-    readonly account_id: string;
-    readonly note: string | null;
-    readonly date: string;
-    readonly source: TransactionSource;
-    readonly sync_status: SyncStatus;
-    readonly device_id: string;
-    readonly deleted_at: string | null;
-    readonly created_at: string;
-    readonly updated_at: string;
+  readonly id: string;
+  readonly amount: number;
+  readonly currency: Currency;
+  readonly type: TransactionType;
+  readonly category_id: string;
+  readonly account_id: string;
+  readonly note: string | null;
+  readonly date: string;
+  readonly source: TransactionSource;
+  readonly sync_status: SyncStatus;
+  readonly device_id: string;
+  readonly deleted_at: string | null;
+  readonly created_at: string;
+  readonly updated_at: string;
 }
 
 // TODO(human): 定义 ChatMessage 接口（对应数据库 chat_messages 表）
@@ -88,13 +88,13 @@ export interface Transaction {
 // transaction_id 在 card 类型消息确认后才关联
 // export interface ChatMessage { ... }
 export interface ChatMessage {
-    readonly id: string;
-    readonly role: MessageRole;
-    readonly content: string;
-    readonly content_type: MessageContentType;
-    readonly parse_status: ParseStatus | null;
-    readonly transaction_id: string | null;
-    readonly created_at: string;
+  readonly id: string;
+  readonly role: MessageRole;
+  readonly content: string;
+  readonly content_type: MessageContentType;
+  readonly parse_status: ParseStatus | null;
+  readonly transaction_id: string | null;
+  readonly created_at: string;
 }
 
 // TODO(human): 定义 ParsedTransaction 接口（非数据库表，规则引擎/AI 的统一输出契约）
@@ -102,13 +102,13 @@ export interface ChatMessage {
 // category_id 为 null 时表示需要用户手动选择分类
 // export interface ParsedTransaction { ... }
 export interface ParsedTransaction {
-    readonly amount: number;
-    readonly currency: Currency;
-    readonly type: TransactionType;
-    readonly category_id: string | null;
-    readonly note: string | null;
-    readonly confidence: Confidence;
-    readonly source: ParseSource;
+  readonly amount: number;
+  readonly currency: Currency;
+  readonly type: TransactionType;
+  readonly category_id: string | null;
+  readonly note: string | null;
+  readonly confidence: Confidence;
+  readonly source: ParseSource;
 }
 
 // TODO(human): 定义 CreateTransactionInput 接口（创建账单时的输入参数）
@@ -116,15 +116,15 @@ export interface ParsedTransaction {
 // 这些字段由 DAO 层自动生成
 // export interface CreateTransactionInput { ... }
 export type CreateTransactionInput = Pick<
-    Transaction,
-    | "account_id"
-    | "amount"
-    | "category_id"
-    | "currency"
-    | "note"
-    | "source"
-    | "type"
-    | "date"
+  Transaction,
+  | "account_id"
+  | "amount"
+  | "category_id"
+  | "currency"
+  | "note"
+  | "source"
+  | "type"
+  | "date"
 >;
 // TODO(human): 定义 CreateChatMessageInput 接口（创建聊天消息时的输入参数）
 // 提示: 比 ChatMessage 少了 id 和 created_at
@@ -135,6 +135,6 @@ export type CreateChatMessageInput = Omit<ChatMessage, "id" | "created_at">;
 // 提示: 包含 account 对象和计算出的 balance 数值
 // export interface AccountBalance { ... }
 export interface AccountBalance {
-    readonly account: Account;
-    readonly balance: number;
+  readonly account: Account;
+  readonly balance: number;
 }
