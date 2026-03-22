@@ -1,50 +1,64 @@
-# Welcome to your Expo app 👋
+# SmartLedger - AI 记账 App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+离线优先的对话式 AI 记账应用，基于 React Native + Expo 构建。
 
-## Get started
+## 产品特性
 
-1. Install dependencies
+- **对话式记账** — 聊天窗口为统一入口，输入"午饭25元"即可记账
+- **本地规则引擎** — 正则 + 关键词匹配，离线覆盖 80% 日常记账场景
+- **语音记账** — 长按说话，AI 自动解析生成账单（腾讯云 ASR）
+- **拍照识票** — 拍小票/发票，OCR + AI 自动录入（腾讯云 OCR）
+- **AI 智能分析** — 自然语言查询消费、消费习惯分析（GLM-4.7-Flash）
+- **离线优先** — 核心功能完全离线可用，联网后静默同步
 
-   ```bash
-   npm install
-   ```
+## 技术栈
 
-2. Start the app
+| 层 | 选型 |
+|---|---|
+| 前端框架 | React Native + Expo SDK 55 |
+| 本地数据库 | expo-sqlite |
+| 路由 | expo-router（文件系统路由） |
+| 规则引擎 | 纯 TypeScript（正则 + 关键词） |
+| ASR/OCR | 腾讯云语音识别 / 票据识别 |
+| LLM | GLM-4.7-Flash（智谱 AI，免费） |
+| 云同步 | 腾讯云开发 CloudBase |
+| 语言 | TypeScript（strict mode） |
 
-   ```bash
-   npx expo start
-   ```
+## 开发路线图
 
-In the output, you'll find options to open the app in a
+- **P0 (MVP)** — 本地数据层 + 规则引擎 + 对话式 UI + 手动录入 ← 当前阶段
+- **P1** — 收支统计 + 语音记账 + 拍照识票
+- **P2** — AI 智能层 + 预算管理 + 云同步
+- **P3** — 数据导出
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## 快速开始
 
 ```bash
-npm run reset-project
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npx expo start
+
+# 运行测试
+npm test
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 项目结构
 
-## Learn more
+```
+lib/
+├── db/           # 数据层（类型定义、Schema、DAO）
+└── engine/       # 规则引擎（金额解析、分类匹配）
+app/
+├── (tabs)/       # Tab 页面（记账、统计、设置）
+├── transaction/  # 账单相关页面
+└── components/   # 业务组件（聊天、确认卡片）
+__tests__/        # 单元测试
+docs/             # 设计文档和实现计划
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## 文档
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+- [产品设计文档](docs/superpowers/specs/2026-03-21-ai-ledger-design.md)
+- [P0 实现计划](docs/superpowers/plans/2026-03-21-smartledger-p0-mvp.md)
